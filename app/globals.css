@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(0.985 0.003 240);
+  --foreground: oklch(0.18 0.02 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 240);
+  --primary: oklch(0.42 0.18 240);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.96 0.004 240);
+  --secondary-foreground: oklch(0.25 0.02 240);
+  --muted: oklch(0.96 0.004 240);
+  --muted-foreground: oklch(0.52 0.02 240);
+  --accent: oklch(0.94 0.008 240);
+  --accent-foreground: oklch(0.18 0.02 240);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.90 0.008 240);
+  --input: oklch(0.90 0.008 240);
+  --ring: oklch(0.42 0.18 240);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* Tooth map custom styles */
+.tooth-cell {
+  transition: all 0.15s ease;
+  cursor: pointer;
+  position: relative;
+}
+.tooth-cell:hover { transform: scale(1.1); z-index: 10; }
+.tooth-selected { ring-width: 2px; ring-color: oklch(0.42 0.18 240); }
+.tooth-healthy { background-color: #f0f9ff; border-color: #7dd3fc; }
+.tooth-cavity { background-color: #fef2f2; border-color: #fca5a5; }
+.tooth-crown { background-color: #faf5ff; border-color: #c4b5fd; }
+.tooth-filling { background-color: #fefce8; border-color: #fde047; }
+.tooth-missing { background-color: #f3f4f6; border-color: #d1d5db; opacity: 0.5; }
+.tooth-root-canal { background-color: #fff7ed; border-color: #fdba74; }
+.tooth-implant { background-color: #f0fdf4; border-color: #86efac; }
+
+/* Appointment status colors */
+.appt-completed { background-color: #f0fdf4; border-left: 3px solid #22c55e; }
+.appt-in-chair { background-color: #eff6ff; border-left: 3px solid #3b82f6; }
+.appt-checked-in { background-color: #fefce8; border-left: 3px solid #eab308; }
+.appt-confirmed { background-color: #ffffff; border-left: 3px solid #e2e8f0; }
+.appt-cancelled { background-color: #fef2f2; border-left: 3px solid #ef4444; opacity: 0.7; }
+.appt-no-show { background-color: #f9fafb; border-left: 3px solid #9ca3af; opacity: 0.6; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
