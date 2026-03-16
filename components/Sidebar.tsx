@@ -3,91 +3,88 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  LayoutDashboard,
+  HeartPulse,
+  LayoutGrid,
   CalendarDays,
-  Users,
-  FlaskConical,
+  User,
+  MessageSquare,
+  Clock,
+  FileText,
   Settings,
-  Bell,
-  ChevronRight,
-  Activity,
+  HelpCircle,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+const topNavItems = [
+  { href: "/", label: "Dashboard", icon: LayoutGrid },
   { href: "/schedule", label: "Schedule", icon: CalendarDays },
-  { href: "/patients", label: "Patients", icon: Users },
-  { href: "/lab", label: "Lab Cases", icon: FlaskConical, badge: 3 },
+  { href: "/patients/123", label: "Patients", icon: User }, // Hardcoded for demo
+  { href: "/messages", label: "Messages", icon: MessageSquare },
+  { href: "/history", label: "History", icon: Clock },
+  { href: "/documents", label: "Documents", icon: FileText },
+];
+
+const bottomNavItems = [
+  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/help", label: "Help", icon: HelpCircle },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  // Assume we want /patients/123 to be active for the demo
+  const isPatientsActive = pathname.startsWith("/patients");
 
   return (
-    <aside className="w-56 shrink-0 flex flex-col bg-white border-r border-border h-screen">
+    <aside className="w-[84px] shrink-0 flex flex-col items-center py-8 bg-white h-full relative z-10 border-r border-slate-100">
       {/* Logo */}
-      <div className="flex items-center gap-2.5 px-4 py-5 border-b border-border">
-        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-          <Activity className="w-4 h-4 text-white" strokeWidth={2.5} />
-        </div>
-        <div>
-          <p className="text-sm font-bold text-foreground leading-tight">DentaFlow</p>
-          <p className="text-[10px] text-muted-foreground leading-tight">Practice Suite</p>
-        </div>
+      <div className="mb-10 w-full px-2">
+        <Link href="/">
+          <div className="flex flex-col items-center justify-center w-full py-2">
+            <span className="font-black text-blue-600 text-xl leading-tight text-center tracking-tighter">SMS</span>
+            <span className="font-bold text-slate-800 text-[9px] uppercase tracking-wider mt-0.5">Dental</span>
+          </div>
+        </Link>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 px-2 py-3 space-y-0.5">
-        {navItems.map(({ href, label, icon: Icon, badge }) => {
-          const active = pathname === href || (href !== "/" && pathname.startsWith(href));
+      {/* Main Nav */}
+      <nav className="flex-1 flex flex-col items-center gap-2 w-full px-2">
+        {topNavItems.map(({ href, label, icon: Icon }) => {
+          let active = pathname === href;
+          if (label === "Patients" && isPatientsActive) active = true;
+
           return (
             <Link
-              key={href}
+              key={label}
               href={href}
+              title={label}
               className={cn(
-                "flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium transition-colors group",
-                active
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                "relative flex flex-col items-center justify-center w-full py-2 rounded-xl transition-all group",
+                active ? "bg-blue-50 text-blue-600" : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
               )}
             >
-              <span className="flex items-center gap-2.5">
-                <Icon className={cn("w-4 h-4", active ? "text-primary" : "text-muted-foreground group-hover:text-foreground")} />
-                {label}
-              </span>
-              {badge != null && (
-                <Badge variant="secondary" className="text-[10px] h-4 px-1.5 bg-amber-100 text-amber-700 border-0">
-                  {badge}
-                </Badge>
+              {active && (
+                <div className="absolute left-[-8px] top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-600 rounded-r-md" />
               )}
-              {active && !badge && <ChevronRight className="w-3 h-3 text-primary/50" />}
+              <Icon className="w-5 h-5 mb-1" strokeWidth={active ? 2.5 : 2} fill={active ? "currentColor" : "none"} />
+              <span className="text-[10px] font-medium leading-tight text-center">{label}</span>
             </Link>
           );
         })}
       </nav>
 
-      {/* Bottom */}
-      <div className="px-2 pb-3 space-y-0.5 border-t border-border pt-3">
-        <button className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors">
-          <Bell className="w-4 h-4" />
-          Notifications
-        </button>
-        <button className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground transition-colors">
-          <Settings className="w-4 h-4" />
-          Settings
-        </button>
-        {/* Provider badge */}
-        <div className="flex items-center gap-2.5 px-3 py-2 mt-2">
-          <div className="w-7 h-7 rounded-full bg-primary text-white text-[11px] font-bold flex items-center justify-center">
-            EC
-          </div>
-          <div className="min-w-0">
-            <p className="text-xs font-semibold text-foreground truncate">Dr. Emily Chen</p>
-            <p className="text-[10px] text-muted-foreground">General Dentist</p>
-          </div>
-        </div>
+      {/* Bottom Nav */}
+      <div className="flex flex-col items-center gap-2 w-full mt-auto pt-6 px-2">
+        {bottomNavItems.map(({ href, label, icon: Icon }) => (
+          <Link
+            key={label}
+            href={href}
+            title={label}
+            className="flex flex-col items-center justify-center w-full py-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition-all group"
+          >
+            <Icon className="w-5 h-5 mb-1" strokeWidth={2} />
+            <span className="text-[10px] font-medium leading-tight text-center">{label}</span>
+          </Link>
+        ))}
       </div>
     </aside>
   );

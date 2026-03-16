@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { todaysAppointments, mockPatients } from "@/lib/mockData";
+import { mockPatients } from "@/lib/mockData";
+import { useAppointments } from "@/components/providers/AppointmentProvider";
 import { PatientSnapshotSheet } from "@/components/patient/PatientSnapshotSheet";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -72,6 +73,7 @@ function ApptBlock({ appt, onClick }: ApptBlockProps) {
 }
 
 export function ScheduleCalendar() {
+  const { appointments } = useAppointments();
   const [selectedPatientId, setSelectedPatientId] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -94,7 +96,7 @@ export function ScheduleCalendar() {
                 <div className={cn("w-2 h-2 rounded-full", chair === "Chair 1" ? "bg-blue-500" : chair === "Chair 2" ? "bg-violet-500" : "bg-emerald-500")} />
                 <span className="text-xs font-semibold text-foreground">{chair}</span>
                 <Badge variant="secondary" className="text-[9px] h-4 px-1 border-0">
-                  {todaysAppointments.filter(a => a.chair === chair).length}
+                  {appointments.filter(a => a.chair === chair).length}
                 </Badge>
               </div>
             </div>
@@ -117,7 +119,7 @@ export function ScheduleCalendar() {
 
             {/* Chair columns */}
             {CHAIRS.map(chair => {
-              const chairAppts = todaysAppointments.filter(a => a.chair === chair);
+              const chairAppts = appointments.filter(a => a.chair === chair);
               return (
                 <div key={chair} className="border-r last:border-0 border-border relative">
                   {/* Hour lines */}

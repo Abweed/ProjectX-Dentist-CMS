@@ -45,6 +45,14 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Overriding default Tailwind blue palette to match the user's requested hex #779ECB */
+  --color-blue-50: color-mix(in srgb, #779ECB 15%, transparent);
+  --color-blue-100: color-mix(in srgb, #779ECB 30%, transparent);
+  --color-blue-500: #779ECB;
+  --color-blue-600: #779ECB;
+  --color-blue-700: color-mix(in srgb, #779ECB 85%, black);
+  --color-blue-900: color-mix(in srgb, #779ECB 50%, black);
 }
 
 :root {
@@ -54,7 +62,7 @@
   --card-foreground: oklch(0.18 0.02 240);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.02 240);
-  --primary: oklch(0.42 0.18 240);
+  --primary: #779ECB;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.96 0.004 240);
   --secondary-foreground: oklch(0.25 0.02 240);
@@ -89,7 +97,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: #779ECB;
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
